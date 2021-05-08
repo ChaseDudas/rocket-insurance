@@ -1,7 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import './App.css';
 import RatingInformationScreen from './pages/RatingInformationScreen';
+import QuoteOverviewScreen from './pages/QuoteOverviewScreen';
 
 function App() {
   return (
@@ -21,7 +23,16 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <RatingInformationScreen />
+    <Router>
+      <Switch>
+        <Route exact path='/'>
+            <RatingInformationScreen />
+        </Route>
+        <Route path='/overview'>
+            <QuoteOverviewScreen />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
