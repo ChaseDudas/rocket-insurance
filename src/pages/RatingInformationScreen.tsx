@@ -1,32 +1,60 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-type Address = {
+type ratingAddress = {
     line_1: string;
     line_2: string | null;
     city: string;
     region: string;
     postal: string;
 };
-type Quote = {
+type policyHolder = {
+    first_name: string,
+    last_name: string
+};
+type Option = {
+    title: string,
+    description: string,
+    values: Array<number>
+};
+type variableOption = {
+    deductible: Option,
+    asteroid_collision: Option
+};
+type variableSelection = {
+    deductable: number,
+    asteroid_collision: number
+};
+type initQuote = {
     first_name: string;
     last_name: string;
-    address: Address;
+    address: ratingAddress;
 };
-const defaultAddress: Address = {
+type Quote = {
+    quoteId: string,
+    rating_address: ratingAddress,
+    policy_holder: policyHolder,
+    variable_options: variableOption,
+    variable_selections: variableSelection,
+    premium: string;
+};
+const defaultAddress: ratingAddress = {
     line_1: '',
     line_2: null,
     city: '',
     region: '',
     postal: '',
 };
-const defaultQuote: Quote = {
+const defaultQuote: initQuote = {
     first_name: '',
     last_name: '',
     address: defaultAddress,
 }
 
 function RatingInformationScreen() {
-    const [values, setValues] = React.useState<Quote>(defaultQuote);
+    const [values, setValues] = React.useState<initQuote>(defaultQuote);
+    const [quote, setQuote] = React.useState<Quote>();
+    let history = useHistory();
 
     const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
         e.preventDefault();
@@ -40,26 +68,31 @@ function RatingInformationScreen() {
         setValues({...values, address: {...values.address, [name]: value}})
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         alert('A form was submitted: ' + JSON.stringify(values));
 
-        fetch('https://fed-challenge-api.sure.now.sh/api/v1/quotes', {
-        method: 'POST',
-        // We convert the React state to JSON and send it as the POST body
-        body: JSON.stringify(values)
-        })
-        .then(function(response) {
-        console.log(response)
-        return response.json();
-      })
-      .catch(err => {
-        //   Handle the error, if any
-        console.log(err)
-      });
+        // fetch('https://fed-challenge-api.sure.now.sh/api/v1/quotes', {
+        //     method: 'POST',
+        //     body: JSON.stringify(values)
+        //     })
+        // .then((response) => response.json())
+        // .then(data => setQuote(data.quote))
+        // .catch(err => console.error(err));
 
+        // // console.log(quote)
+        // history.push('/overview', quote)
+
+        const res = await fetch('https://fed-challenge-api.sure.now.sh/api/v1/quotes', {
+            method: 'POST',
+            body: JSON.stringify(values)
+            })
+        const json = await res.json()
+        const quote = json.quote as Quote
+        // console.log(quoteID)
+        history.push('/overview', quote)
     }
+
     return (
       <form className='rating-information-form' method="POST" onSubmit={handleSubmit}> 
           <div>
