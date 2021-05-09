@@ -22,7 +22,7 @@ type variableOption = {
     asteroid_collision: Option
 };
 type variableSelection = {
-    deductable: number,
+    deductible: number,
     asteroid_collision: number
 };
 type initQuote = {

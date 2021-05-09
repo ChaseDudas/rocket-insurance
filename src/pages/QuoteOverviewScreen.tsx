@@ -22,13 +22,14 @@ type variableOption = {
     asteroid_collision: Option
 };
 type variableSelection = {
-    deductable: number,
+    deductible: number,
     asteroid_collision: number
 };
-type initQuote = {
-    first_name: string;
-    last_name: string;
-    address: ratingAddress;
+type updateQuote = {
+    quoteId: string,
+    rating_address: ratingAddress,
+    policy_holder: policyHolder,
+    variable_selections: variableSelection,
 };
 type Quote = {
     quoteId: string,
@@ -41,21 +42,39 @@ type Quote = {
 
 function QuoteOverviewScreen() {
     const history = useHistory();
-    const quote = history.location.state as Quote
+    const [quote, setQuote] = useState<Quote>(history.location.state as Quote);
+    const [update, setUpdate] = useState<updateQuote>({quoteId:quote.quoteId, rating_address:quote.rating_address, policy_holder:quote.policy_holder, variable_selections:quote.variable_selections})
 
-    // let quote = history.location.state;
-    console.log(quote?.premium)
-    
+    console.log("Quote:")
+    console.log(quote)
+    console.log("Update:")
+    console.log(update)
+
+    useEffect(() => {
+        fetch('https://fed-challenge-api.sure.now.sh/api/v1/quotes/'+ update.quoteId, {
+            method: 'PUT',
+            body: JSON.stringify({quote: update})
+            })
+        .then((response) => response.json())
+        .then(data => setQuote(data.quote as Quote))
+        .catch(err => console.error(err));
+    }, [update])
+
+    const handleChange = (e: React.FormEvent<HTMLSelectElement>): void => {
+        e.preventDefault();
+        const {name, value} = e.currentTarget;
+        setUpdate({...update, variable_selections: {...update?.variable_selections, [name]: Number(value)}})
+    }
     return (    
         <form>
             <div>
                 <label>
                     {quote?.variable_options.deductible.title}
                     <small>{quote?.variable_options.deductible.description}</small>
-                    <select>
-                        <option value={quote?.variable_options.deductible.values[0]}>{quote?.variable_options.deductible.values[0]}</option>
-                        <option value={quote?.variable_options.deductible.values[1]}>{quote?.variable_options.deductible.values[1]}</option>
-                        <option value={quote?.variable_options.deductible.values[2]}>{quote?.variable_options.deductible.values[2]}</option>
+                    <select name="deductible" onChange={handleChange}>
+                        {quote.variable_options.deductible.values.map((deductibleItem) => (
+                            <option key={deductibleItem} value={deductibleItem}>{deductibleItem}</option>
+                        ))}
                     </select>
                 </label>
             </div>
@@ -63,11 +82,10 @@ function QuoteOverviewScreen() {
                 <label>
                     {quote?.variable_options.asteroid_collision.title}
                     <small>{quote?.variable_options.asteroid_collision.description}</small>
-                    <select>
-                        <option value={quote?.variable_options.asteroid_collision.values[0]}>{quote?.variable_options.asteroid_collision.values[0]}</option>
-                        <option value={quote?.variable_options.asteroid_collision.values[1]}>{quote?.variable_options.asteroid_collision.values[1]}</option>
-                        <option value={quote?.variable_options.asteroid_collision.values[2]}>{quote?.variable_options.asteroid_collision.values[2]}</option>
-                        <option value={quote?.variable_options.asteroid_collision.values[3]}>{quote?.variable_options.asteroid_collision.values[3]}</option>
+                    <select name="asteroid_collision" onChange={handleChange}>
+                        {quote.variable_options.asteroid_collision.values.map((asteroid_collisionItem) => (
+                            <option key={asteroid_collisionItem} value={asteroid_collisionItem}>{asteroid_collisionItem}</option>
+                        ))}
                     </select>
                 </label>
             </div>
