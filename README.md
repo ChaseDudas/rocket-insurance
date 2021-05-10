@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Sure Frontend Technical Challenge
 
+# **Rocket Insurance**
+
+### By **Chase Dudas**
+
+[chasedudas13@gmail.com](mailto:chasedudas13@gmail.com)    [Portfolio](https://www.cdudas.com/)    [LinkedIn](https://www.linkedin.com/in/chasedudas/)    [GitHub](https://github.com/ChaseDudas)
+
+# Installation Instructions
+
+1. Navigate to [repo](https://github.com/ChaseDudas/sure-take-home.git)
+2. Clone locally using `gh repo clone ChaseDudas/sure-take-home`
+3. Install dependencies using `yarn install`
+4. Run the app in the development mode using `yarn start`
+5. Open [http://localhost:3000](http://localhost:3000/) to view it in the browser.
+6. Voila!
+
+# Discussion
+
+I used the following technologies: **HTML**, **SASS**, **React**, **Jest**, and **Enzyme**.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+`yarn create react-app sure-take-home --template typescript`
 
-In the project directory, you can run:
+I am hosting a live version of the repo on AWS Amplify.
 
-### `yarn start`
+# Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> Build a React application with the following two screens:
+1. Rating Information
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I added a screen with a form to collect the user's rating information. The `GET MY QUOTE` button submits the information to the `/api/v1/quotes` endpoint to create a quote. Using `react-router-dom`, the app then navigates to the Quote Overview screen, passing on the response from the POST request.
 
-### `yarn test`
+> 2. Quote Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Having successfully created a quote with the customer's rating information, the Quote Overview screen shows the annual premium for the policy and the available coverage limits. It showcases a form with a `<select>` dropdown for each of the policy coverage variables that let's the user select a preferred option for each variable. If either of these values change, a PUT request is made to the following endpoint `api/v1/quotes/:quoteId`. The premium is then updated accordingly.
 
-### `yarn build`
+> A link to a live, running example of your project.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I am hosting the project using `AWS Amplify`. Visit [`https://www.rocketinsurance.app/`](https://www.rocketinsurance.app/) to experience the live project for yourself.
