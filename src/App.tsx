@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import './App.css';
+import './App.scss';
+import './styles/RocketInsuranceScreens.scss'
 import RatingInformationScreen from './pages/RatingInformationScreen';
 import QuoteOverviewScreen from './pages/QuoteOverviewScreen';
 

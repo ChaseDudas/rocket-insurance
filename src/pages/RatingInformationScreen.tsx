@@ -94,31 +94,27 @@ function RatingInformationScreen() {
     }
 
     return (
-      <form className='rating-information-form' method="POST" onSubmit={handleSubmit}> 
-          <div>
-              <label>
-                  Firstname:
-                  <input required type="text" value={values.first_name} name="first_name" onChange={handleChange} />
-              </label>
-              <label>
-                  Lastname:
-                  <input required type="text" value={values.last_name} name="last_name" onChange={handleChange} />
-              </label>
-          </div>
-          <div>
-              <label>
-                  Address:
-                  <input required type="text" name="line_1" value={values.address.line_1} onChange={handleAddressChange} />
-                  <input type="text" name="line_2"  value={values.address.line_2 || ''} onChange={handleAddressChange} />
-                  <input required type="text" name="city" value={values.address.city} onChange={handleAddressChange} />
-                  <input required type="text" name="region" value={values.address.region} onChange={handleAddressChange} />
-                  <input required type="text" name="postal" value={values.address.postal} onChange={handleAddressChange} />
-              </label>
-          </div>
-          <div>
-            <input type="submit" value="Submit" />
-          </div>
-      </form>
+    <div className="container">
+        <div className="left">
+            <div className="header">
+                <h2 className="animation a1">Welcome to Rocket Insurance</h2>
+                <h4 className="animation a2">You're just a few clicks away from flying through space worry-free protected by our comprehensive coverage options.</h4>
+            </div>
+            <form className="form" method="POST" onSubmit={handleSubmit}>
+                <input required type="text" className="form-field animation a3" placeholder="First Name" value={values.first_name} name="first_name" onChange={handleChange} />
+                <input required type="text" className="form-field animation a4" placeholder="Last Name" value={values.last_name} name="last_name" onChange={handleChange} />
+                <input required type="text" className="form-field animation a5" placeholder="Address Line 1" value={values.address.line_1} name="line_1" onChange={handleAddressChange} />
+                <input type="text" className="form-field animation a4" placeholder="Address Line 2" value={values.address.line_2 || ''} name="line_2" onChange={handleAddressChange} />
+                <input required type="text" className="form-field animation a6" placeholder="City" value={values.address.city} name="city" onChange={handleAddressChange} />
+                <input required type="text" className="form-field animation a7" placeholder="State/Province" value={values.address.region} name="region" onChange={handleAddressChange} />
+                <input required type="text" className="form-field animation a8" placeholder="Zip/Postal Code" value={values.address.postal} name="postal" onChange={handleAddressChange} />
+                <p className="animation a9"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target='_blank' rel="noreferrer">Need Help?</a></p>
+                <button type='submit' className="animation a10">GET MY QUOTE</button>
+            </form>
+        </div>
+        <div className="right"></div>
+    </div>
+
     );
   }
   
