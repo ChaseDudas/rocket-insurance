@@ -27,7 +27,7 @@ I am hosting a live version of the repo on AWS Amplify.
 # Requirements
 
 > Build a React application with the following two screens:
-1. Rating Information
+> 1. Rating Information
 
 I added a screen with a form to collect the user's rating information. The `GET MY QUOTE` button submits the information to the `/api/v1/quotes` endpoint to create a quote. Using `react-router-dom`, the app then navigates to the Quote Overview screen, passing on the response from the POST request.
 
