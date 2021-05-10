@@ -11,9 +11,8 @@ body {
 }
 
 .left {
-  overflow: hidden;
+  overflow: scroll;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   animation-name: left;
