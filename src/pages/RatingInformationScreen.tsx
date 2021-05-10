@@ -52,8 +52,7 @@ const defaultQuote: initQuote = {
 }
 
 function RatingInformationScreen() {
-    const [values, setValues] = React.useState<initQuote>(defaultQuote);
-    const [quote, setQuote] = React.useState<Quote>();
+    const [values, setValues] = useState<initQuote>(defaultQuote);
     let history = useHistory();
 
     const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
@@ -70,26 +69,12 @@ function RatingInformationScreen() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert('A form was submitted: ' + JSON.stringify(values));
-
-        // fetch('https://fed-challenge-api.sure.now.sh/api/v1/quotes', {
-        //     method: 'POST',
-        //     body: JSON.stringify(values)
-        //     })
-        // .then((response) => response.json())
-        // .then(data => setQuote(data.quote))
-        // .catch(err => console.error(err));
-
-        // // console.log(quote)
-        // history.push('/overview', quote)
-
         const res = await fetch('https://fed-challenge-api.sure.now.sh/api/v1/quotes', {
             method: 'POST',
             body: JSON.stringify(values)
             })
         const json = await res.json()
         const quote = json.quote as Quote
-        // console.log(quoteID)
         history.push('/overview', quote)
     }
 
