@@ -92,7 +92,7 @@ function QuoteOverviewScreen() {
                 </div>
                 <div className="header">
                     <h4 className="animation a6">Fly through space worry-free for</h4>
-                    <h1 className="animation a7"><sup>$</sup>{quote?.premium}</h1>
+                    <h1 className="animation a7"><sup>$</sup>{quote?.premium.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h1>
                 </div>
                 <p className="animation a8"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target='_blank' rel="noreferrer">Need Help?</a></p>
             </form>
