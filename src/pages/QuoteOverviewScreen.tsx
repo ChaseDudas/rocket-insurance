@@ -78,7 +78,7 @@ function QuoteOverviewScreen() {
                     <select name="deductible" onChange={handleChange} className="form-field animation a3">
                         {quote.variable_options.deductible.values.map((deductibleItem) => (
                             <option key={deductibleItem} value={deductibleItem}>$ {deductibleItem}</option>
-                        ))}
+                        ))} {/* Creates an option tag for every element within deductible's values */}
                     </select>
                 </div>
                 <div className="header animation a4">
@@ -87,12 +87,12 @@ function QuoteOverviewScreen() {
                     <select name="asteroid_collision" onChange={handleChange} className="form-field animation a5">
                         {quote.variable_options.asteroid_collision.values.map((asteroid_collisionItem) => (
                             <option key={asteroid_collisionItem} value={asteroid_collisionItem}>$ {asteroid_collisionItem}</option>
-                        ))}
+                        ))} {/* Creates an option tag for every element within asteroid_collision's values */}
                     </select>
                 </div>
                 <div className="header">
                     <h4 className="animation a6">Fly through space worry-free for</h4>
-                    <h1 className="animation a7"><sup>$</sup>{quote?.premium.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h1>
+                    <h1 className="animation a7"><sup>$</sup>{quote?.premium.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h1> {/* Uses REGEX to add commas. This make the premium more user friendly */}
                 </div>
                 <p className="animation a8"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target='_blank' rel="noreferrer">Need Help?</a></p>
             </form>

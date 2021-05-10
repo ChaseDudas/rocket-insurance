@@ -36,6 +36,8 @@ sup{
   background-position: center;
 }
 
+/* HEADER STYLES */
+
 .header > h1 {
     font-size: 3rem;
     margin: 0;
@@ -63,6 +65,8 @@ sup{
 .buffer{
   margin-bottom: 20px;
 }
+
+/* FORM STYLES */
 
 .form {
   max-width: 90%;
@@ -112,6 +116,8 @@ select {
   letter-spacing: 3px;
   font-family: 'Rubik', sans-serif;
 }
+
+/* ANIMATION STYLES */
 
 .animation {
   animation-name: move;

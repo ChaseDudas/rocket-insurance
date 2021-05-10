@@ -104,3 +104,4 @@ function RatingInformationScreen() {
   }
   
   export default RatingInformationScreen;
+  
